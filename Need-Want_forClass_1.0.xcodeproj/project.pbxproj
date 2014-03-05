@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141D0D1318C7B65900E379E5 /* UIColor+NWSColorizeCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 141D0D1218C7B65900E379E5 /* UIColor+NWSColorizeCustom.m */; };
 		148DD33818C6FD2C00E5E38D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148DD33718C6FD2C00E5E38D /* Foundation.framework */; };
 		148DD33A18C6FD2C00E5E38D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148DD33918C6FD2C00E5E38D /* CoreGraphics.framework */; };
 		148DD33C18C6FD2C00E5E38D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148DD33B18C6FD2C00E5E38D /* UIKit.framework */; };
@@ -21,6 +22,7 @@
 		148DD35918C6FD2C00E5E38D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148DD33B18C6FD2C00E5E38D /* UIKit.framework */; };
 		148DD36118C6FD2C00E5E38D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 148DD35F18C6FD2C00E5E38D /* InfoPlist.strings */; };
 		148DD36318C6FD2C00E5E38D /* Need_Want_forClass_1_0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 148DD36218C6FD2C00E5E38D /* Need_Want_forClass_1_0Tests.m */; };
+		14D4AED718C7BC450056FB4A /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14D4AED618C7BC450056FB4A /* Property List.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		141D0D1118C7B65900E379E5 /* UIColor+NWSColorizeCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+NWSColorizeCustom.h"; path = "../UIColor+NWSColorizeCustom.h"; sourceTree = "<group>"; };
+		141D0D1218C7B65900E379E5 /* UIColor+NWSColorizeCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+NWSColorizeCustom.m"; path = "../UIColor+NWSColorizeCustom.m"; sourceTree = "<group>"; };
 		148DD33418C6FD2C00E5E38D /* Need-Want_forClass_1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Need-Want_forClass_1.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		148DD33718C6FD2C00E5E38D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		148DD33918C6FD2C00E5E38D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +57,7 @@
 		148DD35E18C6FD2C00E5E38D /* Need-Want_forClass_1.0Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Need-Want_forClass_1.0Tests-Info.plist"; sourceTree = "<group>"; };
 		148DD36018C6FD2C00E5E38D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		148DD36218C6FD2C00E5E38D /* Need_Want_forClass_1_0Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Need_Want_forClass_1_0Tests.m; sourceTree = "<group>"; };
+		14D4AED618C7BC450056FB4A /* Property List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +122,9 @@
 				148DD34918C6FD2C00E5E38D /* Main.storyboard */,
 				148DD34C18C6FD2C00E5E38D /* NWSViewController.h */,
 				148DD34D18C6FD2C00E5E38D /* NWSViewController.m */,
+				141D0D1118C7B65900E379E5 /* UIColor+NWSColorizeCustom.h */,
+				141D0D1218C7B65900E379E5 /* UIColor+NWSColorizeCustom.m */,
+				14D4AED618C7BC450056FB4A /* Property List.plist */,
 				148DD34F18C6FD2C00E5E38D /* Images.xcassets */,
 				148DD33E18C6FD2C00E5E38D /* Supporting Files */,
 			);
@@ -231,6 +239,7 @@
 			files = (
 				148DD35018C6FD2C00E5E38D /* Images.xcassets in Resources */,
 				148DD34218C6FD2C00E5E38D /* InfoPlist.strings in Resources */,
+				14D4AED718C7BC450056FB4A /* Property List.plist in Resources */,
 				148DD34B18C6FD2C00E5E38D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				141D0D1318C7B65900E379E5 /* UIColor+NWSColorizeCustom.m in Sources */,
 				148DD34418C6FD2C00E5E38D /* main.m in Sources */,
 				148DD34818C6FD2C00E5E38D /* NWSAppDelegate.m in Sources */,
 				148DD34E18C6FD2C00E5E38D /* NWSViewController.m in Sources */,
@@ -461,6 +471,7 @@
 				148DD36818C6FD2C00E5E38D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		148DD36918C6FD2C00E5E38D /* Build configuration list for PBXNativeTarget "Need-Want_forClass_1.0Tests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +480,7 @@
 				148DD36B18C6FD2C00E5E38D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

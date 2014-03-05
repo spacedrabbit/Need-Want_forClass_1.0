@@ -24,7 +24,7 @@
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="G7J-AM-qNh">
                                         <rect key="frame" x="0.0" y="119" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G7J-AM-qNh">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G7J-AM-qNh" id="7Of-Lm-2zC">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
@@ -46,34 +46,26 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vv-l3-2pb">
-                                        <rect key="frame" x="216" y="49" width="44" height="30"/>
+                                        <rect key="frame" x="216" y="49" width="99" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                         <state key="normal" title="Need"/>
                                         <connections>
                                             <action selector="needButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="557-0K-3wz"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3d-MA-gQz">
-                                        <rect key="frame" x="268" y="49" width="44" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Want">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="wantButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="RLD-kN-UHv"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Task:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ye-hX-cDO">
-                                        <rect key="frame" x="20" y="11" width="240" height="30"/>
+                                        <rect key="frame" x="20" y="11" width="188" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="21"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tXg-L4-yQG">
-                                        <rect key="frame" x="266" y="10" width="51" height="31"/>
+                                        <rect key="frame" x="241" y="10" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="mode:" destination="vXZ-lx-hvc" eventType="valueChanged" id="nFL-UG-IJ4"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -92,8 +84,8 @@
                         <outlet property="containerView" destination="8zS-vH-3Fo" id="6Xu-AW-TLv"/>
                         <outlet property="needButton" destination="1vv-l3-2pb" id="xrA-fs-dww"/>
                         <outlet property="taskField" destination="1Dq-oy-7sM" id="rEE-Un-V3v"/>
+                        <outlet property="taskMode" destination="tXg-L4-yQG" id="5ro-b3-N4Y"/>
                         <outlet property="taskTable" destination="qSZ-2B-WLd" id="nKp-9J-r0b"/>
-                        <outlet property="wantButton" destination="P3d-MA-gQz" id="Nyo-Ck-qrf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

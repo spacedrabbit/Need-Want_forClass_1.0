@@ -7,8 +7,9 @@
 //
 
 #import "NWSViewController.h"
+#import "UIColor+NWSColorizeCustom.h"
 
-@interface NWSViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface NWSViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 
 @property (strong, nonatomic) NSMutableArray * needList;
@@ -17,13 +18,15 @@
 @property (weak, nonatomic) IBOutlet UITableView *taskTable;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIButton *needButton;
-@property (weak, nonatomic) IBOutlet UIButton *wantButton;
 
 @property (weak, nonatomic) IBOutlet UITextField *taskField;
-@property (weak, nonatomic) IBOutlet UISwitch *editMode;
 
-@property (strong, nonatomic) UIColor * primaryPink;
-@property (strong, nonatomic) UIColor * primaryBlue;
+@property (weak, nonatomic) IBOutlet UISwitch *taskMode;
+@property (nonatomic) BOOL need;
+
+
+@property (strong, nonatomic) UIColor * pink;
+@property (strong, nonatomic) UIColor * blue;
 
 @end
 
@@ -51,18 +54,37 @@
     [super viewDidLoad];
     
     totalSections = 2;
-	
-    self.primaryPink = [UIColor colorWithRed:226.0/255.0 green:54.0/255.0 blue:130.0/255.0 alpha:1.0];
-    self.primaryBlue = [UIColor colorWithRed:51.0/255.0 green:156.0/255.0 blue:234.0/255.0 alpha:1.0];
     
-    [self.containerView setBackgroundColor:self.primaryBlue];
+    //this is bundle
+    self.need = TRUE;
     
-    [self.needButton setTitleColor:self.primaryPink forState:UIControlStateNormal];
-    [self.wantButton setTitleColor:self.primaryPink forState:UIControlStateNormal];
+    //instance properties not currently in use
+    self.pink = [UIColor tickleMePink];//category of UIColor
+    self.blue = [UIColor tickleMeBlue];//category of UIColor
     
-    [self.needList addObjectsFromArray:@[@"Buy Milk", @"Take Cat to Vet"]];
-    [self.wantList addObjectsFromArray:@[@"Go to Movies", @"Play games"]];
-
+    
+    [self.containerView setBackgroundColor:[UIColor tickleMeBlue]];
+    [self.needButton setTitleColor:[UIColor tickleMePink] forState:UIControlStateNormal];
+    
+    //this is the Plist
+    NSString * path = [[NSBundle mainBundle] pathForResource:@"Property List" ofType:@"plist"];
+    NSDictionary * testList = [NSDictionary dictionaryWithContentsOfFile:path];
+    NSArray * allkeys = [testList allKeys];
+    
+    [self.needList addObjectsFromArray:[testList objectForKey:allkeys[0]]];
+    [self.wantList addObjectsFromArray:[testList objectForKey:allkeys[1]]];
+    
+}
+- (IBAction)mode:(UISwitch *)sender {
+    
+    if (sender.on) {
+        self.need = TRUE;
+        [self.needButton setTitle:@"Need" forState:UIControlStateNormal];
+    }
+    else{
+        self.need = FALSE;
+        [self.needButton setTitle:@"Want" forState:UIControlStateNormal];
+    }
     
 }
 
@@ -74,20 +96,28 @@
 
 - (IBAction)needButton:(UIButton *)sender {
     
+    
     //check to see if something was inputted
     if ([self.taskField.text length] > 0 ){
         //adds task to array
-        [self.needList addObject:self.taskField.text];
+        if (self.need) {
+            [self.needList addObject:self.taskField.text];
+        }else{
+            [self.wantList addObject:self.taskField.text];
+        }
     }
     //clears the text field
     self.taskField.text = @"";
     
-    //reloads the data in the 1st section
-    [self.taskTable reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    //reloads the data and animates
+    NSIndexSet * sectionSets = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, totalSections) ];
+    
+    [self.taskTable reloadSections:sectionSets withRowAnimation:UITableViewRowAnimationAutomatic];
+
     //dismiss keyboard
     [self.view endEditing:TRUE];
 }
-
+/*
 - (IBAction)wantButton:(UIButton *)sender {
     
     //check to see if something was inputted
@@ -103,16 +133,17 @@
     
     //dismiss keyboard
     [self.view endEditing:TRUE];
-}
+}*/
 
-- (IBAction)editTasks:(UIBarButtonItem *)sender {
-    
-    if ([self.taskTable isEditing]) {
-        [self.taskTable setEditing:FALSE animated:TRUE];
-    }else{
-        [self.taskTable setEditing:TRUE animated:TRUE];
-    }
-}
+
+
+/***************************************************
+ 
+ 
+ Configuring Table
+ 
+ 
+ ***************************************************/
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -123,12 +154,12 @@
     if (indexPath.section == 0)
     {
         cell.textLabel.text = self.needList[indexPath.row];
-        cell.textLabel.textColor = self.primaryPink;
+        cell.textLabel.textColor = [UIColor tickleMePink];
     }
     else
     {
         cell.textLabel.text = self.wantList[indexPath.row];
-        cell.textLabel.textColor = self.primaryBlue;
+        cell.textLabel.textColor = [UIColor tickleMeBlue];
     }
     
     return cell;
@@ -158,6 +189,15 @@
     }
 }
 
+/***************************************************
+ 
+ 
+ 
+ Table Updating
+ 
+ 
+ ***************************************************/
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     id tempStorage;//placeholder object
@@ -184,6 +224,15 @@
     
 }
 
+/***************************************************
+ 
+ 
+ 
+    Table Editing
+ 
+ 
+ ***************************************************/
+
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return TRUE;
 }
@@ -191,8 +240,12 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (editingStyle == UITableViewCellEditingStyleDelete){
+        
+        UIAlertView * warning = [[UIAlertView alloc] initWithTitle:@"Task Deletion" message:@"You deleted a task" delegate:self cancelButtonTitle:@"Thanks" otherButtonTitles: nil];
+        
+        [warning show];
+
         if (indexPath.section == 0) {
-            NSLog(@"In the first section");
             [self.needList removeObjectAtIndex:indexPath.row];
         }
         else{
@@ -202,6 +255,21 @@
     
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
+}
+
+- (IBAction)editTasks:(UIBarButtonItem *)sender {
+    
+    if ([self.taskTable isEditing]) {
+        [self.taskTable setEditing:FALSE animated:TRUE];
+    }else{
+        [self.taskTable setEditing:TRUE animated:TRUE];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    NSLog(@"Warning is displayed");
+    
 }
 
 @end
