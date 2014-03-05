@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) NSMutableArray * needList;
 @property (strong, nonatomic) NSMutableArray * wantList;
+@property (strong, nonatomic) NSSet * categories;
 
 @property (weak, nonatomic) IBOutlet UITableView *taskTable;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -49,14 +50,28 @@
     return _wantList;
 }
 
+-(NSSet *)categories{
+    if (!_categories) {
+        _categories = [NSSet set];
+    }
+    return _categories;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    totalSections = 2;
+    //NSNumber
+    NSNumber * setUpSections = [NSNumber numberWithUnsignedInt:2];
+    totalSections = [setUpSections unsignedIntegerValue];
     
-    //this is bundle
-    self.need = TRUE;
+    //this is Settings bundle requirement
+    [self checkSettings];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(checkSettings)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
     
     //instance properties not currently in use
     self.pink = [UIColor tickleMePink];//category of UIColor
@@ -75,7 +90,20 @@
     [self.wantList addObjectsFromArray:[testList objectForKey:allkeys[1]]];
     
 }
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+/***************************************************
+ 
+ 
+ UI Elements: Buttons/Switches
+ ***************************************************/
 - (IBAction)mode:(UISwitch *)sender {
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     
     if (sender.on) {
         self.need = TRUE;
@@ -86,12 +114,9 @@
         [self.needButton setTitle:@"Want" forState:UIControlStateNormal];
     }
     
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [defaults setBool:sender.on forKey:@"enabled_preference"];
+    [defaults synchronize];
+    
 }
 
 - (IBAction)needButton:(UIButton *)sender {
@@ -117,24 +142,6 @@
     //dismiss keyboard
     [self.view endEditing:TRUE];
 }
-/*
-- (IBAction)wantButton:(UIButton *)sender {
-    
-    //check to see if something was inputted
-    if ([self.taskField.text length] > 0 ){
-        //adds task to array
-        [self.wantList addObject:self.taskField.text];
-    }
-    //clears the text field
-    self.taskField.text = @"";
-    
-    //reloads the data in the 1st section
-    [self.taskTable reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
-    
-    //dismiss keyboard
-    [self.view endEditing:TRUE];
-}*/
-
 
 
 /***************************************************
@@ -202,7 +209,7 @@
     
     id tempStorage;//placeholder object
     
-    //get the object at the selected index and section, removes it from it's corresponding array and moves it into another array. in this case either tasks > completed, or vice verse
+    //get the object at the selected index and section, removes it from it's corresponding array and moves it into another array. in this case either needs -> wants, or vice verse
     if(indexPath.section == 0){
         tempStorage = [self.needList objectAtIndex:indexPath.row];
         [self.needList removeObjectAtIndex:indexPath.row];
@@ -213,13 +220,11 @@
         [self.wantList removeObjectAtIndex:indexPath.row];
         [self.needList addObject:tempStorage];
     }
-    
-    //reloads table data to reflect array changes
-    //[tableView reloadData];
-    
-    //need to create an index set for this to work, define it as a range from 0 to 1, ideally I need a count for total number of sections in the app to make this less static
+
+    //need to create an index set for this to work, define it as a range from 0 to 1
     NSIndexSet * sectionSets = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, totalSections) ];
     
+        //obviously, [tableview reloadData] works as well, but where's the fun in that?
     [tableView reloadSections:sectionSets withRowAnimation:UITableViewRowAnimationAutomatic];//fade animation
     
 }
@@ -266,9 +271,58 @@
     }
 }
 
+/***************************************************
+ 
+ 
+ 
+Alert View
+ 
+ 
+ ***************************************************/
+
+
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     NSLog(@"Warning is displayed");
+    //future use here
+    
+}
+
+/***************************************************
+ 
+ 
+ 
+ UISwitch State Checks
+ 
+ 
+ ***************************************************/
+
+-(void) checkSettings{
+    self.need = [[NSUserDefaults standardUserDefaults] boolForKey:@"enabled_preference"];
+    
+    self.taskMode.on = self.need;
+    
+    if (self.need) {
+        [self.needButton setTitle:@"Need" forState:UIControlStateNormal];
+    }else{
+        [self.needButton setTitle:@"Want" forState:UIControlStateNormal];
+    }
+    
+}
+
+/***************************************************
+ 
+ 
+ Future Method -- Not yet implemented
+ 
+ 
+ ***************************************************/
+
+- (void) addNewCategory: (NSString *) category{
+    
+    self.categories = [NSSet setWithObject:category];
+    NSLog(@"Category successfully added");
+    totalSections++;
     
 }
 

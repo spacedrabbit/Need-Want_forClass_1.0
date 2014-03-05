@@ -23,6 +23,7 @@
 		148DD36118C6FD2C00E5E38D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 148DD35F18C6FD2C00E5E38D /* InfoPlist.strings */; };
 		148DD36318C6FD2C00E5E38D /* Need_Want_forClass_1_0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 148DD36218C6FD2C00E5E38D /* Need_Want_forClass_1_0Tests.m */; };
 		14D4AED718C7BC450056FB4A /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14D4AED618C7BC450056FB4A /* Property List.plist */; };
+		14D4AED918C7C2810056FB4A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 14D4AED818C7C2810056FB4A /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		148DD36018C6FD2C00E5E38D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		148DD36218C6FD2C00E5E38D /* Need_Want_forClass_1_0Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Need_Want_forClass_1_0Tests.m; sourceTree = "<group>"; };
 		14D4AED618C7BC450056FB4A /* Property List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
+		14D4AED818C7C2810056FB4A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				148DD34918C6FD2C00E5E38D /* Main.storyboard */,
 				148DD34C18C6FD2C00E5E38D /* NWSViewController.h */,
 				148DD34D18C6FD2C00E5E38D /* NWSViewController.m */,
+				14D4AED818C7C2810056FB4A /* Settings.bundle */,
 				141D0D1118C7B65900E379E5 /* UIColor+NWSColorizeCustom.h */,
 				141D0D1218C7B65900E379E5 /* UIColor+NWSColorizeCustom.m */,
 				14D4AED618C7BC450056FB4A /* Property List.plist */,
@@ -239,6 +242,7 @@
 			files = (
 				148DD35018C6FD2C00E5E38D /* Images.xcassets in Resources */,
 				148DD34218C6FD2C00E5E38D /* InfoPlist.strings in Resources */,
+				14D4AED918C7C2810056FB4A /* Settings.bundle in Resources */,
 				14D4AED718C7BC450056FB4A /* Property List.plist in Resources */,
 				148DD34B18C6FD2C00E5E38D /* Main.storyboard in Resources */,
 			);
