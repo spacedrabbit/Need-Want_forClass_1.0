@@ -62,8 +62,8 @@
     [super viewDidLoad];
     
     //NSNumber
-    NSNumber * setUpSections = [NSNumber numberWithUnsignedInt:2];
-    totalSections = [setUpSections unsignedIntegerValue];
+    /*NSNumber * setUpSections = [NSNumber numberWithUnsignedInt:2];
+    totalSections = [setUpSections unsignedIntegerValue];*/
     
     //this is Settings bundle requirement
     [self checkSettings];
@@ -73,21 +73,33 @@
                                                  name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
     
-    //instance properties not currently in use
-    self.pink = [UIColor tickleMePink];//category of UIColor
-    self.blue = [UIColor tickleMeBlue];//category of UIColor
-    
-    
     [self.containerView setBackgroundColor:[UIColor tickleMeBlue]];
     [self.needButton setTitleColor:[UIColor tickleMePink] forState:UIControlStateNormal];
     
+    /*
     //this is the Plist
     NSString * path = [[NSBundle mainBundle] pathForResource:@"Property List" ofType:@"plist"];
     NSDictionary * testList = [NSDictionary dictionaryWithContentsOfFile:path];
     NSArray * allkeys = [testList allKeys];
     
     [self.needList addObjectsFromArray:[testList objectForKey:allkeys[0]]];
-    [self.wantList addObjectsFromArray:[testList objectForKey:allkeys[1]]];
+    [self.wantList addObjectsFromArray:[testList objectForKey:allkeys[1]]];*/
+    /*
+    Task * task = (Task *)[NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
+    task.title = @"A Go to Space Cat, Priority 1, Want";
+    task.category = @"Want";
+    task.priority = @3;
+    task.notes = @"Whole milk, skim milk is just water pretending to be milk";
+    
+    NSError * error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Issue with saving: %@", error);
+    }*/
+    
+    NSError * err = nil;
+    if (![self.fetchedResultsController performFetch:&err]) {
+        NSLog(@"Issue with fetch: %@", err);
+    }
     
 }
 
@@ -96,11 +108,41 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Fetch Controller
+
+-(NSFetchedResultsController *)fetchedResultsController{
+    
+    if (_fetchedResultsController) {
+        return _fetchedResultsController;
+    }
+    
+    NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription * entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
+    
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor * sortBy = [NSSortDescriptor sortDescriptorWithKey:@"category" ascending:YES];
+    NSSortDescriptor * thenBy = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+    
+    [fetchRequest setSortDescriptors:@[sortBy, thenBy]];
+    
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category" cacheName:nil];
+    
+    _fetchedResultsController.delegate = self;
+    
+    return _fetchedResultsController;
+}
+
 /***************************************************
  
  
  UI Elements: Buttons/Switches
  ***************************************************/
+
+#pragma mark - Button Methods
+
 - (IBAction)mode:(UISwitch *)sender {
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -151,49 +193,45 @@
  
  
  ***************************************************/
-
+#pragma mark - UITableView Methods
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString * cellIdentifier = @"cell";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    if (indexPath.section == 0)
-    {
-        cell.textLabel.text = self.needList[indexPath.row];
+    Task * currentTask = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    cell.textLabel.text = currentTask.title;
+    
+    if ([currentTask.category isEqualToString:@"Need"])
         cell.textLabel.textColor = [UIColor tickleMePink];
-    }
-    else
-    {
-        cell.textLabel.text = self.wantList[indexPath.row];
+    
+    if ([currentTask.category isEqualToString:@"Want"]){
         cell.textLabel.textColor = [UIColor tickleMeBlue];
     }
-    
+
     return cell;
     
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    if (section == 0){
-        return [self.needList count];
-    }
-    else{
-        return [self.wantList count];
-    }
+    //I only make this call once to retrieve SectionInfo to demonstrate its use
+    id<NSFetchedResultsSectionInfo> sec = [[self.fetchedResultsController sections] objectAtIndex:section];
+    
+    return [sec numberOfObjects];
     
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return totalSections;
+    return [[self.fetchedResultsController sections] count];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (section ==0){
-        return @"Needs";
-    }else{
-        return @"Wants";
-    }
+    NSLog(@"in titles");
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
+
 }
 
 /***************************************************
@@ -204,7 +242,7 @@
  
  
  ***************************************************/
-
+/*
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     id tempStorage;//placeholder object
@@ -227,7 +265,7 @@
         //obviously, [tableview reloadData] works as well, but where's the fun in that?
     [tableView reloadSections:sectionSets withRowAnimation:UITableViewRowAnimationAutomatic];//fade animation
     
-}
+}*/
 
 /***************************************************
  
@@ -241,7 +279,7 @@
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return TRUE;
 }
-
+/*
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (editingStyle == UITableViewCellEditingStyleDelete){
@@ -260,7 +298,7 @@
     
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
-}
+}*/
 
 - (IBAction)editTasks:(UIBarButtonItem *)sender {
     
@@ -324,6 +362,90 @@ Alert View
     NSLog(@"Category successfully added");
     totalSections++;
     
+}
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([[segue identifier] isEqualToString:@"addTask"]) {
+        NWSDetailViewController * dvc = [segue destinationViewController];
+        
+        [dvc setDelegate:self];
+    }
+    
+}
+
+#pragma mark - Delegate View Methods
+
+-(void)didSave{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+-(void) didCancel:(id)object{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - NSFetchResultsController Delegates
+
+-(void)controllerWillChangeContent:(NSFetchedResultsController *)controller{
+    [self.taskTable beginUpdates];
+}
+
+-(void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
+    [self.taskTable endUpdates];
+}
+
+-(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
+    
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            NSLog(@"Insert Detected");
+            [self.taskTable insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.taskTable deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:{
+            NSLog(@"Update Detected");
+            
+            Task * changedTask = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            
+            UITableViewCell *cell = [self.taskTable cellForRowAtIndexPath:indexPath];
+            
+            cell.textLabel.text = changedTask.title;
+            
+        }
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            
+            NSLog(@"Move Detected");
+            [self.taskTable deleteRowsAtIndexPaths:@[indexPath]withRowAnimation:UITableViewRowAnimationFade];
+            [self.taskTable insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
+            break;
+    }
+    
+}
+
+-(void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type{
+    
+    switch (type) {
+            
+        case NSFetchedResultsChangeInsert:
+            
+            [self.taskTable insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            
+            [self.taskTable deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            
+            break;
+    }
 }
 
 @end

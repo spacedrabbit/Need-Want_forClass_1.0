@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NWSDetailViewController.h"
+#import "Task.h"
 
-@interface NWSViewController : UIViewController
+@interface NWSViewController : UIViewController <NWSDetailViewControllerDelegate, NSFetchedResultsControllerDelegate>
+
+@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
+@property (strong, nonatomic) NSFetchedResultsController * fetchedResultsController;
 
 @end

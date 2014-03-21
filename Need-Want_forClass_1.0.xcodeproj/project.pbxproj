@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		141D0D1318C7B65900E379E5 /* UIColor+NWSColorizeCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 141D0D1218C7B65900E379E5 /* UIColor+NWSColorizeCustom.m */; };
+		1464FE5718DBF45700E2102B /* NWS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1464FE5518DBF45700E2102B /* NWS.xcdatamodeld */; };
+		1464FE5918DBF5E000E2102B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1464FE5818DBF5E000E2102B /* CoreData.framework */; };
+		1464FE5C18DBFCF200E2102B /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 1464FE5B18DBFCF200E2102B /* Task.m */; };
 		148DD33818C6FD2C00E5E38D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148DD33718C6FD2C00E5E38D /* Foundation.framework */; };
 		148DD33A18C6FD2C00E5E38D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148DD33918C6FD2C00E5E38D /* CoreGraphics.framework */; };
 		148DD33C18C6FD2C00E5E38D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148DD33B18C6FD2C00E5E38D /* UIKit.framework */; };
@@ -24,6 +27,7 @@
 		148DD36318C6FD2C00E5E38D /* Need_Want_forClass_1_0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 148DD36218C6FD2C00E5E38D /* Need_Want_forClass_1_0Tests.m */; };
 		14D4AED718C7BC450056FB4A /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14D4AED618C7BC450056FB4A /* Property List.plist */; };
 		14D4AED918C7C2810056FB4A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 14D4AED818C7C2810056FB4A /* Settings.bundle */; };
+		14E46E1C18DBEED600CB8409 /* NWSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E46E1B18DBEED600CB8409 /* NWSDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +43,10 @@
 /* Begin PBXFileReference section */
 		141D0D1118C7B65900E379E5 /* UIColor+NWSColorizeCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+NWSColorizeCustom.h"; path = "../UIColor+NWSColorizeCustom.h"; sourceTree = "<group>"; };
 		141D0D1218C7B65900E379E5 /* UIColor+NWSColorizeCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+NWSColorizeCustom.m"; path = "../UIColor+NWSColorizeCustom.m"; sourceTree = "<group>"; };
+		1464FE5618DBF45700E2102B /* NWS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NWS.xcdatamodel; sourceTree = "<group>"; };
+		1464FE5818DBF5E000E2102B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1464FE5A18DBFCF200E2102B /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		1464FE5B18DBFCF200E2102B /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		148DD33418C6FD2C00E5E38D /* Need-Want_forClass_1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Need-Want_forClass_1.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		148DD33718C6FD2C00E5E38D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		148DD33918C6FD2C00E5E38D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,6 +68,8 @@
 		148DD36218C6FD2C00E5E38D /* Need_Want_forClass_1_0Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Need_Want_forClass_1_0Tests.m; sourceTree = "<group>"; };
 		14D4AED618C7BC450056FB4A /* Property List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
 		14D4AED818C7C2810056FB4A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		14E46E1A18DBEED600CB8409 /* NWSDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWSDetailViewController.h; sourceTree = "<group>"; };
+		14E46E1B18DBEED600CB8409 /* NWSDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWSDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1464FE5918DBF5E000E2102B /* CoreData.framework in Frameworks */,
 				148DD33A18C6FD2C00E5E38D /* CoreGraphics.framework in Frameworks */,
 				148DD33C18C6FD2C00E5E38D /* UIKit.framework in Frameworks */,
 				148DD33818C6FD2C00E5E38D /* Foundation.framework in Frameworks */,
@@ -86,6 +97,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1464FE5418DBF30B00E2102B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				14E46E1A18DBEED600CB8409 /* NWSDetailViewController.h */,
+				14E46E1B18DBEED600CB8409 /* NWSDetailViewController.m */,
+				148DD34C18C6FD2C00E5E38D /* NWSViewController.h */,
+				148DD34D18C6FD2C00E5E38D /* NWSViewController.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		148DD32B18C6FD2C00E5E38D = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +130,7 @@
 		148DD33618C6FD2C00E5E38D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1464FE5818DBF5E000E2102B /* CoreData.framework */,
 				148DD33718C6FD2C00E5E38D /* Foundation.framework */,
 				148DD33918C6FD2C00E5E38D /* CoreGraphics.framework */,
 				148DD33B18C6FD2C00E5E38D /* UIKit.framework */,
@@ -119,15 +142,15 @@
 		148DD33D18C6FD2C00E5E38D /* Need-Want_forClass_1.0 */ = {
 			isa = PBXGroup;
 			children = (
+				148DD34918C6FD2C00E5E38D /* Main.storyboard */,
 				148DD34618C6FD2C00E5E38D /* NWSAppDelegate.h */,
 				148DD34718C6FD2C00E5E38D /* NWSAppDelegate.m */,
-				148DD34918C6FD2C00E5E38D /* Main.storyboard */,
-				148DD34C18C6FD2C00E5E38D /* NWSViewController.h */,
-				148DD34D18C6FD2C00E5E38D /* NWSViewController.m */,
-				14D4AED818C7C2810056FB4A /* Settings.bundle */,
-				141D0D1118C7B65900E379E5 /* UIColor+NWSColorizeCustom.h */,
+				1464FE5418DBF30B00E2102B /* Views */,
 				141D0D1218C7B65900E379E5 /* UIColor+NWSColorizeCustom.m */,
-				14D4AED618C7BC450056FB4A /* Property List.plist */,
+				141D0D1118C7B65900E379E5 /* UIColor+NWSColorizeCustom.h */,
+				1464FE5518DBF45700E2102B /* NWS.xcdatamodeld */,
+				1464FE5A18DBFCF200E2102B /* Task.h */,
+				1464FE5B18DBFCF200E2102B /* Task.m */,
 				148DD34F18C6FD2C00E5E38D /* Images.xcassets */,
 				148DD33E18C6FD2C00E5E38D /* Supporting Files */,
 			);
@@ -137,6 +160,8 @@
 		148DD33E18C6FD2C00E5E38D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				14D4AED618C7BC450056FB4A /* Property List.plist */,
+				14D4AED818C7C2810056FB4A /* Settings.bundle */,
 				148DD33F18C6FD2C00E5E38D /* Need-Want_forClass_1.0-Info.plist */,
 				148DD34018C6FD2C00E5E38D /* InfoPlist.strings */,
 				148DD34318C6FD2C00E5E38D /* main.m */,
@@ -263,8 +288,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1464FE5C18DBFCF200E2102B /* Task.m in Sources */,
 				141D0D1318C7B65900E379E5 /* UIColor+NWSColorizeCustom.m in Sources */,
 				148DD34418C6FD2C00E5E38D /* main.m in Sources */,
+				1464FE5718DBF45700E2102B /* NWS.xcdatamodeld in Sources */,
+				14E46E1C18DBEED600CB8409 /* NWSDetailViewController.m in Sources */,
 				148DD34818C6FD2C00E5E38D /* NWSAppDelegate.m in Sources */,
 				148DD34E18C6FD2C00E5E38D /* NWSViewController.m in Sources */,
 			);
@@ -487,6 +515,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1464FE5518DBF45700E2102B /* NWS.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1464FE5618DBF45700E2102B /* NWS.xcdatamodel */,
+			);
+			currentVersion = 1464FE5618DBF45700E2102B /* NWS.xcdatamodel */;
+			path = NWS.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 148DD32C18C6FD2C00E5E38D /* Project object */;
 }
