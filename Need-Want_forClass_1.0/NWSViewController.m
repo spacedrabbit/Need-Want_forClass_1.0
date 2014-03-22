@@ -8,6 +8,8 @@
 
 #import "NWSViewController.h"
 #import "UIColor+NWSColorizeCustom.h"
+#import "NWSAppDelegate.h"
+#import "NWSFullViewController.h"
 
 @interface NWSViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
@@ -161,26 +163,30 @@
     
 }
 
+//this now functions as a 'Quick Add' button with defaulted values
 - (IBAction)needButton:(UIButton *)sender {
     
     
     //check to see if something was inputted
     if ([self.taskField.text length] > 0 ){
         //adds task to array
-        if (self.need) {
-            [self.needList addObject:self.taskField.text];
-        }else{
-            [self.wantList addObject:self.taskField.text];
-        }
+        
+        Task * quickTask = (Task *) [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
+        
+        quickTask.title = self.taskField.text;
+        quickTask.priority = @3;
+        quickTask.category = (self.need ? @"Need" : @"Want" );
+        quickTask.notes = @"No notes yet!";
+        //note: date property is set on instatiation of Task object
+        
     }
     //clears the text field
     self.taskField.text = @"";
     
-    //reloads the data and animates
-    NSIndexSet * sectionSets = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, totalSections) ];
+    //nifty way of saving through the AppDelegate method, no rhyme or reason...it's just something I can do
+    NWSAppDelegate * myAppDelegate = (NWSAppDelegate *) [[UIApplication sharedApplication] delegate];
+    [myAppDelegate saveContext];
     
-    [self.taskTable reloadSections:sectionSets withRowAnimation:UITableViewRowAnimationAutomatic];
-
     //dismiss keyboard
     [self.view endEditing:TRUE];
 }
@@ -229,7 +235,7 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    NSLog(@"in titles");
+
     return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
 
 }
@@ -369,20 +375,43 @@ Alert View
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if ([[segue identifier] isEqualToString:@"addTask"]) {
+        
         NWSDetailViewController * dvc = [segue destinationViewController];
+        
+        Task * newTask = (Task *)[NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
+        
+        dvc.managedObject = newTask;
         
         [dvc setDelegate:self];
     }
     
+    if ([[segue identifier] isEqualToString:@"fullView"]) {
+        
+        UITabBarController * tbc = [segue destinationViewController];
+        NWSFullViewController * fvc = (NWSFullViewController *) [[tbc viewControllers] firstObject];
+        
+        NSIndexPath * selectedPath = [self.taskTable indexPathForSelectedRow];
+        Task * selectedTask = [self.fetchedResultsController objectAtIndexPath:selectedPath];
+        fvc.selectedTask = selectedTask;
+    }
 }
 
 #pragma mark - Delegate View Methods
 
 -(void)didSave{
+    
+    NSError * err = nil;
+    if (![self.managedObjectContext save:&err]) {
+        NSLog(@"Could not save: %@", err);
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
--(void) didCancel:(id)object{
+-(void) didCancel:(Task *)object{
+    
+    [self.managedObjectContext deleteObject:object];
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 #pragma mark - NSFetchResultsController Delegates
@@ -446,6 +475,10 @@ Alert View
             
             break;
     }
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
 
 @end

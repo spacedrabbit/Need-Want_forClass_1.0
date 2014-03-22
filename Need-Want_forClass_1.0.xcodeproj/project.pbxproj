@@ -11,6 +11,7 @@
 		1464FE5718DBF45700E2102B /* NWS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1464FE5518DBF45700E2102B /* NWS.xcdatamodeld */; };
 		1464FE5918DBF5E000E2102B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1464FE5818DBF5E000E2102B /* CoreData.framework */; };
 		1464FE5C18DBFCF200E2102B /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 1464FE5B18DBFCF200E2102B /* Task.m */; };
+		1488540018DD586800AE9C80 /* NWSFullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 148853FF18DD586800AE9C80 /* NWSFullViewController.m */; };
 		148DD33818C6FD2C00E5E38D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148DD33718C6FD2C00E5E38D /* Foundation.framework */; };
 		148DD33A18C6FD2C00E5E38D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148DD33918C6FD2C00E5E38D /* CoreGraphics.framework */; };
 		148DD33C18C6FD2C00E5E38D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148DD33B18C6FD2C00E5E38D /* UIKit.framework */; };
@@ -47,6 +48,8 @@
 		1464FE5818DBF5E000E2102B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1464FE5A18DBFCF200E2102B /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		1464FE5B18DBFCF200E2102B /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		148853FE18DD586800AE9C80 /* NWSFullViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWSFullViewController.h; sourceTree = "<group>"; };
+		148853FF18DD586800AE9C80 /* NWSFullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWSFullViewController.m; sourceTree = "<group>"; };
 		148DD33418C6FD2C00E5E38D /* Need-Want_forClass_1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Need-Want_forClass_1.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		148DD33718C6FD2C00E5E38D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		148DD33918C6FD2C00E5E38D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -100,6 +103,8 @@
 		1464FE5418DBF30B00E2102B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				148853FE18DD586800AE9C80 /* NWSFullViewController.h */,
+				148853FF18DD586800AE9C80 /* NWSFullViewController.m */,
 				14E46E1A18DBEED600CB8409 /* NWSDetailViewController.h */,
 				14E46E1B18DBEED600CB8409 /* NWSDetailViewController.m */,
 				148DD34C18C6FD2C00E5E38D /* NWSViewController.h */,
@@ -292,6 +297,7 @@
 				141D0D1318C7B65900E379E5 /* UIColor+NWSColorizeCustom.m in Sources */,
 				148DD34418C6FD2C00E5E38D /* main.m in Sources */,
 				1464FE5718DBF45700E2102B /* NWS.xcdatamodeld in Sources */,
+				1488540018DD586800AE9C80 /* NWSFullViewController.m in Sources */,
 				14E46E1C18DBEED600CB8409 /* NWSDetailViewController.m in Sources */,
 				148DD34818C6FD2C00E5E38D /* NWSAppDelegate.m in Sources */,
 				148DD34E18C6FD2C00E5E38D /* NWSViewController.m in Sources */,

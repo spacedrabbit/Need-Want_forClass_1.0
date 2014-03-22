@@ -7,25 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Task.h"
 
 @protocol NWSDetailViewControllerDelegate
 
 -(void) didSave;
--(void) didCancel: (id) object;
-#warning need to replace this with NSManagedObject later
+-(void) didCancel: (Task *) object;
+
 @end
 
-@interface NWSDetailViewController : UIViewController
+@interface NWSDetailViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITextField *titleText;
 @property (weak, nonatomic) IBOutlet UITextField *dateText;
 @property (weak, nonatomic) IBOutlet UITextView *notesText;
+@property (weak, nonatomic) IBOutlet UITextField *priorityText;
+@property (weak, nonatomic) IBOutlet UIButton *priorityButton;
+
 
 @property (strong, nonatomic) id<NWSDetailViewControllerDelegate> delegate;
 
-@property (strong, nonatomic) id managedObject;
-#warning need to replace this with NSManagedObject later
+@property (strong, nonatomic) Task * managedObject;
 
+- (IBAction)priorityButton:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)cancel:(id)sender;
 
