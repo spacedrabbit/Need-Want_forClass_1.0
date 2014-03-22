@@ -77,7 +77,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Need/Want" id="OX0-xi-akl">
-                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="IRb-fk-9pu">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="IRb-fk-9pu">
                             <connections>
                                 <action selector="editTasks:" destination="vXZ-lx-hvc" id="upq-XE-Msa"/>
                             </connections>
@@ -184,7 +184,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.83529418706893921" green="0.87843143939971924" blue="0.95686280727386475" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.97401147959183676" green="0.97401147959183676" blue="0.97401147959183676" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="dateText" destination="Nlh-mO-83Q" id="sJU-HR-dzL"/>
@@ -195,7 +195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oiv-ke-aED" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1492" y="-96"/>
+            <point key="canvasLocation" x="1348" y="-91"/>
         </scene>
         <!--Full View Controller - Details-->
         <scene sceneID="kZb-8N-NzV">
@@ -265,6 +265,61 @@
             </objects>
             <point key="canvasLocation" x="1752" y="579"/>
         </scene>
+        <!--View Controller - Map-->
+        <scene sceneID="OIg-PE-QHq">
+            <objects>
+                <viewController id="e30-0n-z4d" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OSe-xR-5fn"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ieu-I6-vso"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lbm-BX-BTh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Placeholder for MapView" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opj-jN-NGf">
+                                <rect key="frame" x="64" y="222" width="192" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" id="7fx-17-xOT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="29m-eu-z7w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2557" y="579"/>
+        </scene>
+        <!--View Controller - Web-->
+        <scene sceneID="DVO-Kj-gbf">
+            <objects>
+                <viewController id="H4d-Rw-rXb" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wu2-wh-TSW"/>
+                        <viewControllerLayoutGuide type="bottom" id="koH-ll-RqH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ymL-Ts-Mqb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Place holder controller for WebView" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wJ-dR-99I">
+                                <rect key="frame" x="34" y="172" width="273" height="112"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Web" id="Jzx-fy-w4U"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vL0-mU-usY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2152" y="579"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="eJH-76-GBN">
             <objects>
@@ -297,6 +352,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="KHj-9E-iLA" kind="relationship" relationship="viewControllers" id="2Hb-fe-Vgs"/>
+                        <segue destination="H4d-Rw-rXb" kind="relationship" relationship="viewControllers" id="aOk-tS-JTG"/>
+                        <segue destination="e30-0n-z4d" kind="relationship" relationship="viewControllers" id="AbM-dx-F0P"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LFC-tS-VV8" userLabel="First Responder" sceneMemberID="firstResponder"/>

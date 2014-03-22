@@ -7,6 +7,7 @@
 //
 
 #import "NWSFullViewController.h"
+#import "NWSAppDelegate.h"
 
 @interface NWSFullViewController ()
 
@@ -45,16 +46,41 @@
         [self.quickEdit setTitle:@"quickEdit" forState:UIControlStateNormal];
     }
     
+    [self saveEdits];
+    
 }
 
+// makes the text fields editable or not
 -(void)makeEditable{
     
     for (UITextField * txt in self.theTexts ) {
         [txt setEnabled:![txt isEnabled]];
-        //[txt setBorderStyle:UITextBorderStyleBezel];
+        
+        if ([txt isEnabled]) {
+            [txt setBorderStyle:UITextBorderStyleBezel];
+        }
+        else{
+            //I use this as a visual indicator that it can be edited
+            [txt setBorderStyle:UITextBorderStyleNone];
+        }
+        
     }
     
     [self.notesLabel setEditable:![self.notesLabel isEditable]];
+}
+
+-(void) saveEdits{
+    
+    self.selectedTask.title = self.taskLabel.text;
+    self.selectedTask.notes = self.notesLabel.text;
+    self.selectedTask.category = self.categoryLabel.text;
+    
+    //made a category to handle my specific formatting
+    self.selectedTask.date = [[NSDateFormatter nwsDateForm] dateFromString:self.dateLabel.text];
+    
+    NWSAppDelegate * myDelegate = [[UIApplication sharedApplication] delegate];
+    [myDelegate saveContext];
+    
 }
 
 @end

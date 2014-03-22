@@ -50,9 +50,9 @@
     
     self.managedObject.title = self.titleText.text;
     self.managedObject.notes = self.notesText.text;
-    
-#warning this date needs adjusting... not correctly being saved
+
     NSDateFormatter * fm = [[NSDateFormatter alloc] init];
+    [fm setDateFormat:@"dd/MM/yyyy"];
     self.managedObject.date = [fm dateFromString:self.dateText.text];
     
     [self.delegate didSave];
@@ -97,7 +97,4 @@
     
 }
 
-
-- (IBAction)priorityButton:(id)sender {
-}
 @end

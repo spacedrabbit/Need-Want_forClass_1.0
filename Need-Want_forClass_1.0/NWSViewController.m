@@ -86,17 +86,6 @@
     
     [self.needList addObjectsFromArray:[testList objectForKey:allkeys[0]]];
     [self.wantList addObjectsFromArray:[testList objectForKey:allkeys[1]]];*/
-    /*
-    Task * task = (Task *)[NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
-    task.title = @"A Go to Space Cat, Priority 1, Want";
-    task.category = @"Want";
-    task.priority = @3;
-    task.notes = @"Whole milk, skim milk is just water pretending to be milk";
-    
-    NSError * error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Issue with saving: %@", error);
-    }*/
     
     NSError * err = nil;
     if (![self.fetchedResultsController performFetch:&err]) {
@@ -213,8 +202,11 @@
     if ([currentTask.category isEqualToString:@"Need"])
         cell.textLabel.textColor = [UIColor tickleMePink];
     
-    if ([currentTask.category isEqualToString:@"Want"]){
+    else if ([currentTask.category isEqualToString:@"Want"]){
         cell.textLabel.textColor = [UIColor tickleMeBlue];
+    }
+    else{
+        cell.textLabel.textColor = [UIColor blackColor];
     }
 
     return cell;
@@ -244,67 +236,22 @@
  
  
  
- Table Updating
- 
- 
- ***************************************************/
-/*
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    id tempStorage;//placeholder object
-    
-    //get the object at the selected index and section, removes it from it's corresponding array and moves it into another array. in this case either needs -> wants, or vice verse
-    if(indexPath.section == 0){
-        tempStorage = [self.needList objectAtIndex:indexPath.row];
-        [self.needList removeObjectAtIndex:indexPath.row];
-        [self.wantList addObject:tempStorage];
-    }
-    else {
-        tempStorage = [self.wantList objectAtIndex:indexPath.row];
-        [self.wantList removeObjectAtIndex:indexPath.row];
-        [self.needList addObject:tempStorage];
-    }
-
-    //need to create an index set for this to work, define it as a range from 0 to 1
-    NSIndexSet * sectionSets = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, totalSections) ];
-    
-        //obviously, [tableview reloadData] works as well, but where's the fun in that?
-    [tableView reloadSections:sectionSets withRowAnimation:UITableViewRowAnimationAutomatic];//fade animation
-    
-}*/
-
-/***************************************************
- 
- 
- 
     Table Editing
  
  
  ***************************************************/
 
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    return TRUE;
-}
-/*
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (editingStyle == UITableViewCellEditingStyleDelete){
-        
-        UIAlertView * warning = [[UIAlertView alloc] initWithTitle:@"Task Deletion" message:@"You deleted a task" delegate:self cancelButtonTitle:@"Thanks" otherButtonTitles: nil];
-        
-        [warning show];
-
-        if (indexPath.section == 0) {
-            [self.needList removeObjectAtIndex:indexPath.row];
-        }
-        else{
-            [self.wantList removeObjectAtIndex:indexPath.row];
-        }
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     }
     
-    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-
-}*/
+    //alternate method for saving, calls the AppDelegate's saveContext: method
+    NWSAppDelegate * myDelegate = [[UIApplication sharedApplication] delegate];
+    [myDelegate saveContext];
+    
+}
 
 - (IBAction)editTasks:(UIBarButtonItem *)sender {
     

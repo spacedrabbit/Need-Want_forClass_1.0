@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Task.h"
+#import "NSDateFormatter+NWForm.h"
 
 @interface NWSFullViewController : UIViewController
 

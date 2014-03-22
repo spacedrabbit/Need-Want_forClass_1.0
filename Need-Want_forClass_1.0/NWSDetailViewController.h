@@ -16,20 +16,18 @@
 
 @end
 
-@interface NWSDetailViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface NWSDetailViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *titleText;
 @property (weak, nonatomic) IBOutlet UITextField *dateText;
 @property (weak, nonatomic) IBOutlet UITextView *notesText;
 @property (weak, nonatomic) IBOutlet UITextField *priorityText;
-@property (weak, nonatomic) IBOutlet UIButton *priorityButton;
 
 
 @property (strong, nonatomic) id<NWSDetailViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) Task * managedObject;
 
-- (IBAction)priorityButton:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)cancel:(id)sender;
 

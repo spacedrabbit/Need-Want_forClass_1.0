@@ -26,6 +26,7 @@
 		148DD35918C6FD2C00E5E38D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148DD33B18C6FD2C00E5E38D /* UIKit.framework */; };
 		148DD36118C6FD2C00E5E38D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 148DD35F18C6FD2C00E5E38D /* InfoPlist.strings */; };
 		148DD36318C6FD2C00E5E38D /* Need_Want_forClass_1_0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 148DD36218C6FD2C00E5E38D /* Need_Want_forClass_1_0Tests.m */; };
+		14C88EA318DE14C20004F391 /* NSDateFormatter+NWForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C88EA218DE14C20004F391 /* NSDateFormatter+NWForm.m */; };
 		14D4AED718C7BC450056FB4A /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14D4AED618C7BC450056FB4A /* Property List.plist */; };
 		14D4AED918C7C2810056FB4A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 14D4AED818C7C2810056FB4A /* Settings.bundle */; };
 		14E46E1C18DBEED600CB8409 /* NWSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E46E1B18DBEED600CB8409 /* NWSDetailViewController.m */; };
@@ -69,6 +70,8 @@
 		148DD35E18C6FD2C00E5E38D /* Need-Want_forClass_1.0Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Need-Want_forClass_1.0Tests-Info.plist"; sourceTree = "<group>"; };
 		148DD36018C6FD2C00E5E38D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		148DD36218C6FD2C00E5E38D /* Need_Want_forClass_1_0Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Need_Want_forClass_1_0Tests.m; sourceTree = "<group>"; };
+		14C88EA118DE14C20004F391 /* NSDateFormatter+NWForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+NWForm.h"; sourceTree = "<group>"; };
+		14C88EA218DE14C20004F391 /* NSDateFormatter+NWForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+NWForm.m"; sourceTree = "<group>"; };
 		14D4AED618C7BC450056FB4A /* Property List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
 		14D4AED818C7C2810056FB4A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		14E46E1A18DBEED600CB8409 /* NWSDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWSDetailViewController.h; sourceTree = "<group>"; };
@@ -151,8 +154,6 @@
 				148DD34618C6FD2C00E5E38D /* NWSAppDelegate.h */,
 				148DD34718C6FD2C00E5E38D /* NWSAppDelegate.m */,
 				1464FE5418DBF30B00E2102B /* Views */,
-				141D0D1218C7B65900E379E5 /* UIColor+NWSColorizeCustom.m */,
-				141D0D1118C7B65900E379E5 /* UIColor+NWSColorizeCustom.h */,
 				1464FE5518DBF45700E2102B /* NWS.xcdatamodeld */,
 				1464FE5A18DBFCF200E2102B /* Task.h */,
 				1464FE5B18DBFCF200E2102B /* Task.m */,
@@ -165,6 +166,10 @@
 		148DD33E18C6FD2C00E5E38D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				141D0D1218C7B65900E379E5 /* UIColor+NWSColorizeCustom.m */,
+				141D0D1118C7B65900E379E5 /* UIColor+NWSColorizeCustom.h */,
+				14C88EA118DE14C20004F391 /* NSDateFormatter+NWForm.h */,
+				14C88EA218DE14C20004F391 /* NSDateFormatter+NWForm.m */,
 				14D4AED618C7BC450056FB4A /* Property List.plist */,
 				14D4AED818C7C2810056FB4A /* Settings.bundle */,
 				148DD33F18C6FD2C00E5E38D /* Need-Want_forClass_1.0-Info.plist */,
@@ -293,6 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14C88EA318DE14C20004F391 /* NSDateFormatter+NWForm.m in Sources */,
 				1464FE5C18DBFCF200E2102B /* Task.m in Sources */,
 				141D0D1318C7B65900E379E5 /* UIColor+NWSColorizeCustom.m in Sources */,
 				148DD34418C6FD2C00E5E38D /* main.m in Sources */,
